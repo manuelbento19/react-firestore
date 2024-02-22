@@ -7,10 +7,12 @@ import UsersTable from "./components/UsersTable";
 import CreateUserFom from "./components/CreateUserFom";
 import './App.scss'
 import { createPortal } from "react-dom";
+import { Button, Container } from "@radix-ui/themes";
 
 const app = initializeApp(firebaseConfig);
 
 function App() {
+  const [visibleModal,setModalVisible] = useState(false)
   const [users,setUsers] = useState([])
   const database = getFirestore(app)
   const usersCollectionRef = collection(database,"users")
@@ -36,15 +38,18 @@ function App() {
 
 
   return (
-    <main id="main">
-      <header>
-        <h1>React FireStore - Users</h1>
-      </header>
-      <section id="main_section">
-        <CreateUserFom createUser={createUser}/>
-        <UsersTable database={database} getUsers={getUsers} users={users} deleteUser={deleteUser}/>
-      </section>
-    </main>
+      <Container>
+        <header>
+          <h1>React FireStore - Users</h1>
+        </header>
+        <section id="main_section">
+          <nav>
+            <Button onClick={()=>setModalVisible(true)}>Register</Button>
+          </nav>
+          {visibleModal && <CreateUserFom close={setModalVisible} createUser={createUser}/>}
+          <UsersTable database={database} getUsers={getUsers} users={users} deleteUser={deleteUser}/>
+        </section>
+      </Container>
   )
 }
 

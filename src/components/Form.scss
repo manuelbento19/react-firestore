@@ -1,10 +1,44 @@
-#form{
-    max-width: 350px;
-    width: 100%;
-    padding: 30px 15px 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+#modal{
+    position: fixed;
+    inset: 0;
+    z-index: 1;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    #modal_shadow{
+        position: fixed;
+        inset: 0;
+        background: #0000002a;
+        backdrop-filter: blur(4px);
+        z-index: 2;
+    }
+    form{
+        position: relative;
+        z-index: 3;
+        transition: all .5s ease;
+        margin: auto;
+        max-width: 370px;
+        width: 100%;
+        padding: 30px 20px 15px;
+        background-color: #fff;
+        border: none;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        
+        h1{
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #505050; 
+            margin: 0 auto 8px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        label{
+            font-size: .9rem;
+            color: #696969;
+        }
+        input{
+            color: #505050;
+        }
+    }
 }
