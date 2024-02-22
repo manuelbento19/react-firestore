@@ -1,10 +1,17 @@
 import React from 'react';
 import {Table,Button} from '@radix-ui/themes';
+import { context } from '../context';
+import { useEffect } from 'react';
  
 const columns = ["#","Name","E-mail",""]
 
-export default function UsersTable({users,getUsers,database,deleteUser}) {
- 
+export default function UsersTable() {
+  const {users,getUsers,deleteUser} = context();
+
+  useEffect(()=>{
+    getUsers()
+  },[]);  
+
   return (
     <Table.Root variant='surface'>
       <Table.Header>
