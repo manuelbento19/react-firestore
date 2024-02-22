@@ -1,6 +1,6 @@
 import React from 'react';
 import {Table,Button} from '@radix-ui/themes';
-import { context } from '../context';
+import { context } from '../../context';
 import { useEffect } from 'react';
  
 const columns = ["#","Name","E-mail",""]

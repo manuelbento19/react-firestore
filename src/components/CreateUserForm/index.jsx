@@ -1,9 +1,13 @@
 import React from 'react'
 import {Button,Flex,TextField} from '@radix-ui/themes';
-import './Form.scss'
-import { context } from '../context';
+import './style.scss'
+import { context } from '../../context';
+import Spinner from '../Spinner';
+import { useState } from 'react';
 
 export default function CreateUserFom({close}) {
+  const [loading,setLoading] = useState(false)
+
   const {createUser} = context();
   const onsubmit = async(event) => {
     event.preventDefault();
@@ -12,9 +16,15 @@ export default function CreateUserFom({close}) {
 
     if(!nameInput.value) return nameInput.focus()
     if(!emailInput.value) return emailInput.focus()
-
-    await createUser(nameInput.value,emailInput.value)
-    close(false)
+    try{
+      setLoading(true)
+      await createUser(nameInput.value,emailInput.value)
+      close(false)
+    }catch{}
+    finally{
+      setLoading(false)
+    }
+   
   }
 
   const exitModal = () => {
@@ -40,10 +50,10 @@ export default function CreateUserFom({close}) {
         <Flex direction="column">
           <label htmlFor="email">E-mail</label>
           <TextField.Root style={{padding: 4}}>
-            <TextField.Input id='email'/>
+            <TextField.Input type='email' id='email'/>
           </TextField.Root>
         </Flex>
-        <Button style={{padding: 20}}>Register</Button>
+        <Button disabled={loading} style={{padding: 20}}>Register {loading && <Spinner/>}</Button>
       </form>
     </div>
   )

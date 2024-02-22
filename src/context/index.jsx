@@ -7,9 +7,9 @@ import { useState } from "react";
 
 const Context = createContext({
     users: [],
-    getUsers: () => {},
-    createUser: () => {},
-    deleteUser: () => {},
+    getUsers: async() => {},
+    createUser: async() => {},
+    deleteUser: async() => {},
 })
 const app = initializeApp(firebaseConfig)
 

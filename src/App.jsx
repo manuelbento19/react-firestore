@@ -1,6 +1,6 @@
 import { useState } from "react";
-import UsersTable from "./components/UsersTable";
-import CreateUserFom from "./components/CreateUserFom";
+import UsersTable from "./components/UsersTable/index";
+import CreateUserFom from "./components/CreateUserForm/index";
 import './App.scss'
 import { Button, Container } from "@radix-ui/themes";
 
